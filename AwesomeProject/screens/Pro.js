@@ -22,25 +22,19 @@ export default class Pro extends React.Component {
             <Block>
               <Block>
                 <Image source={Images.ArgonLogo}
-                  style={{ marginBottom: theme.SIZES.BASE * 1.5 }}/>
+                  style={{ marginBottom: theme.SIZES.BASE * 1.5 }} />
               </Block>
               <Block >
                 <Block>
-                  <Text color="white" size={60}>Argon</Text>
+                  <Text color="white" size={60}>Toronto</Text>
                 </Block>
                 <Block>
-                  <Text color="white" size={60}>Design</Text>
+                  <Text color="white" size={60}>Dominion</Text>
                 </Block>
                 <Block row>
-                  <Text color="white" size={60}>System</Text>
-                  <Block middle style={styles.pro}>
-                    <Text size={16} color="white">PRO</Text>
-                  </Block>
+                  <Text color="white" size={60}>Bank</Text>
                 </Block>
               </Block>
-              <Text size={16} color='rgba(255,255,255,0.6)' style={{ marginTop: 35 }}>
-                Take advantage of all the features and screens made upon Galio Design System, coded on React Native for both.
-              </Text>
               <Block row style={{ marginTop: theme.SIZES.BASE * 1.5, marginBottom: theme.SIZES.BASE * 4 }}>
                 <Image
                   source={Images.iOSLogo}
@@ -54,7 +48,7 @@ export default class Pro extends React.Component {
                 style={styles.button}
                 color={argonTheme.COLORS.INFO}
                 onPress={() => navigation.navigate('Home')}>
-                <Text bold color={theme.COLORS.WHITE}>COMING SOON</Text>
+                <Text bold color={theme.COLORS.WHITE}>Go Back</Text>
               </Button>
             </Block>
           </Block>
