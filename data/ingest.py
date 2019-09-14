@@ -78,5 +78,5 @@ def predicted_monthly_spending(monthly_transaction_list):
     y = np.array(y)
     A = np.vstack([x, np.ones(len(x))]).T
     m, b = np.linalg.lstsq(A, y, rcond=None)[0]
-    return (m * 1 + b)
+    return (m + b)
 
