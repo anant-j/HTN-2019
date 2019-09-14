@@ -8,7 +8,7 @@ const instructions = Platform.select({
 });
 
 let pic = {
-  uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+  uri: 'https://raw.githubusercontent.com/anant-j/HTN-2019/master/td-logo.png'
 };
 
 export default class App extends Component {
