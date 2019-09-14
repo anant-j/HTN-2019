@@ -113,9 +113,8 @@ class Header extends React.Component {
         right
         color="black"
         style={styles.search}
-        placeholder="What are you looking for?"
+        placeholder="Enter Customer Id"
         placeholderTextColor={'#8898AA'}
-        onFocus={() => navigation.navigate('Profile')}
         iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search-zoom-in" family="ArgonExtra" />}
       />
     );
@@ -125,17 +124,9 @@ class Header extends React.Component {
 
     return (
       <Block row style={styles.options}>
-        <Button shadowless style={[styles.tab, styles.divider]} onPress={() => navigation.navigate('Profile')}>
-          <Block row middle>
-            <Icon name="diamond" family="ArgonExtra" style={{ paddingRight: 8 }} color={argonTheme.COLORS.ICON} />
-            <Text size={16} style={styles.tabTitle}>{optionLeft || 'Beauty'}</Text>
-          </Block>
-        </Button>
         <Button shadowless style={styles.tab} onPress={() => navigation.navigate('Profile')}>
-          <Block row middle>
-            <Icon size={16} name="bag-17" family="ArgonExtra" style={{ paddingRight: 8 }} color={argonTheme.COLORS.ICON} />
-            <Text size={16} style={styles.tabTitle}>{optionRight || 'Fashion'}</Text>
-          </Block>
+          <Icon size={16} name="spaceship" family="ArgonExtra" style={{ paddingRight: 0 }} color={argonTheme.COLORS.ICON} />
+          <Text size={16} style={styles.tabTitle}>{optionRight || 'Submit'}</Text>
         </Button>
       </Block>
     );
