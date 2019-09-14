@@ -22,7 +22,7 @@ class DrawerItem extends React.Component {
       case "Notifications":
         return (
           <Icon
-            name="map-big"
+            name="bell"
             family="ArgonExtra"
             size={12}
             color={focused ? "white" : argonTheme.COLORS.ICON}
