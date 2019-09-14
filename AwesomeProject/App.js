@@ -6,6 +6,7 @@ import { Block, GalioProvider } from 'galio-framework';
 import Screens from './navigation/Screens';
 import { Images, articles, argonTheme } from './constants';
 
+
 // cache app images
 const assetImages = [
   Images.Onboarding,
@@ -34,9 +35,9 @@ export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
   }
-  
+
   render() {
-    if(!this.state.isLoadingComplete) {
+    if (!this.state.isLoadingComplete) {
       return (
         <AppLoading
           startAsync={this._loadResourcesAsync}
