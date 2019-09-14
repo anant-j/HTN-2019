@@ -22,6 +22,7 @@ function firebaseconfig() {
   };
   firebase.initializeApp(firebaseConfig);
 }
+firebaseconfig();
 const { height, width } = Dimensions.get('window');
 const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 || height === 896 || width === 896);
 
@@ -60,6 +61,7 @@ const SearchButton = ({ isWhite, style, navigation }) => (
 );
 
 class Header extends React.Component {
+  // global state variable for this.state
   constructor(props) {
     super(props);
     this.state = { text: '' };
@@ -132,7 +134,7 @@ class Header extends React.Component {
 
       <View style={{ padding: 10 }}>
         <TextInput
-          style={{ height: 40, width: 140 }}
+          style={{ height: 40, width: 500, fontWeight: 'bold', textAlign: 'center'}}
           placeholder="Enter Customer Id"
           onChangeText={(text) => this.setState({ text })}
           value={this.state.text}
@@ -140,6 +142,7 @@ class Header extends React.Component {
         />
       </View>
 
+      // old text box
       // <Input
       //   right
       //   color="black"
@@ -155,9 +158,13 @@ class Header extends React.Component {
     return (
       <Block row style={styles.options}>
         <Button shadowless style={styles.tab} onPress={() => {
-          firebaseconfig();
-          firebase.database().ref("Users").set({ CustomerId: this.state.text, });
-          alert("Customer ID Submitted Successfully. Please wait.")
+          try {
+            firebase.database().ref("Users").remove();
+            firebase.database().ref("Users").child(this.state.text).set("");
+            alert("Customer ID Submitted Successfully. Please wait.")
+          } catch (error) {
+            alert("An error occured, please try again later.")
+          }
         }}>
           <Icon size={16} name="spaceship" family="ArgonExtra" style={{ paddingRight: 0 }} color={argonTheme.COLORS.ICON} />
           <Text size={16} style={styles.tabTitle}>{optionRight || 'Submit'}</Text>
