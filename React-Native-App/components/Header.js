@@ -43,7 +43,7 @@ const BasketButton = ({ isWhite, style, navigation }) => (
     <Icon
       family="ArgonExtra"
       size={16}
-      name="basket"
+      name="chart-pie-35"
       color={argonTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
   </TouchableOpacity>
