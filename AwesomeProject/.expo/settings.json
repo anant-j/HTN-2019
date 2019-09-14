@@ -1,8 +1,8 @@
 {
+  "urlRandomness": "jq-qp2",
   "hostType": "tunnel",
   "lanType": "ip",
   "dev": true,
   "minify": false,
-  "urlRandomness": "qc-qb4",
   "https": false
 }
