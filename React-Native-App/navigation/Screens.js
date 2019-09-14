@@ -14,7 +14,7 @@ import Onboarding from "../screens/Onboarding";
 import Pro from "../screens/Pro";
 import Profile from "../screens/Profile";
 import Register from "../screens/Register";
-import Elements from "../screens/Elements";
+import Notifications from "../screens/Notifications";
 // import Articles from "../screens/Articles";
 // drawer
 import Menu from "./Menu";
@@ -61,11 +61,11 @@ const transitionConfig = (transitionProps, prevTransitionProps) => ({
   }
 });
 
-const ElementsStack = createStackNavigator({
-  Elements: {
-    screen: Elements,
+const NotificationsStack = createStackNavigator({
+  Notifications: {
+    screen: Notifications,
     navigationOptions: ({ navigation }) => ({
-      header: <Header title="Elements" navigation={navigation} />
+      header: <Header title="Notification" navigation={navigation} />
     })
   }
 }, {
@@ -165,11 +165,11 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
-    Elements: {
-      screen: ElementsStack,
+    Notifications: {
+      screen: NotificationsStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Elements" title="Elements" />
+          <DrawerItem focused={focused} screen="Notifications" title="Notifications" />
         )
       })
     },
