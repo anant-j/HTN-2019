@@ -8,43 +8,19 @@ import { Button, Select, Icon, Input, Header, Switch } from "../components";
 const { width } = Dimensions.get("screen");
 
 class Notifications extends React.Component {
-  state = {
-    "switch-1": true,
-    "switch-2": false
-  };
+  // state = {
+  //   "switch-1": true,
+  //   "switch-2": false
+  // };
 
-  toggleSwitch = switchId =>
-    this.setState({ [switchId]: !this.state[switchId] });
+  // toggleSwitch = switchId =>
+  //   this.setState({ [switchId]: !this.state[switchId] });
 
   renderButtons = () => {
     return (
       <Block flex>
-        <Text bold size={16} style={styles.title}>
-          Buttons
-        </Text>
         <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-          <Block center>
-            <Button color="default" style={styles.button}>
-              DEFAULT
-            </Button>
-          </Block>
-          <Block center>
-            <Button
-              color="secondary"
-              textStyle={{ color: "black", fontSize: 12, fontWeight: "700" }}
-              style={styles.button}
-            >
-              SECONDARY
-            </Button>
-          </Block>
-          <Block center>
-            <Button style={styles.button}>PRIMARY</Button>
-          </Block>
-          <Block center>
-            <Button color="info" style={styles.button}>
-              INFO
-            </Button>
-          </Block>
+          <Text></Text>
           <Block center>
             <Button color="success" style={styles.button}>
               SUCCESS
@@ -67,76 +43,66 @@ class Notifications extends React.Component {
                 options={["01", "02", "03", "04", "05"]}
               />
             </Block>
-            <Block flex center>
-              <Button small center color="default" style={styles.optionsButton}>
-                DELETE
-              </Button>
-            </Block>
-            <Block flex={1.25} right>
-              <Button center color="default" style={styles.optionsButton}>
-                SAVE FOR LATER
-              </Button>
-            </Block>
           </Block>
         </Block>
       </Block>
     );
   };
 
-  renderText = () => {
-    return (
-      <Block flex style={styles.group}>
-        <Text bold size={16} style={styles.title}>
-          Typography
-        </Text>
-        <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
-          <Text
-            h1
-            style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
-          >
-            Heading 1
-          </Text>
-          <Text
-            h2
-            style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
-          >
-            Heading 2
-          </Text>
-          <Text
-            h3
-            style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
-          >
-            Heading 3
-          </Text>
-          <Text
-            h4
-            style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
-          >
-            Heading 4
-          </Text>
-          <Text
-            h5
-            style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
-          >
-            Heading 5
-          </Text>
-          <Text
-            p
-            style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
-          >
-            Paragraph
-          </Text>
-          <Text muted>This is a muted paragraph.</Text>
-        </Block>
-      </Block>
-    );
-  };
+  // renderText = () => {
+  //   return (
+  //     <Block flex style={styles.group}>
+  //       <Text bold size={16} style={styles.title}>
+  //         Typography
+  //       </Text>
+  //       <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
+  //         <Text
+  //           h1
+  //           style={{ marginBottom: theme.SIZES.BASE / 2 }}
+  //           color={argonTheme.COLORS.DEFAULT}
+  //         >
+  //           Heading 1
+  //         </Text>
+  //         <Text
+  //           h2
+  //           style={{ marginBottom: theme.SIZES.BASE / 2 }}
+  //           color={argonTheme.COLORS.DEFAULT}
+  //         >
+  //           Heading 2
+  //         </Text>
+  //         <Text
+  //           h3
+  //           style={{ marginBottom: theme.SIZES.BASE / 2 }}
+  //           color={argonTheme.COLORS.DEFAULT}
+  //         >
+  //           Heading 3
+  //         </Text>
+  //         <Text
+  //           h4
+  //           style={{ marginBottom: theme.SIZES.BASE / 2 }}
+  //           color={argonTheme.COLORS.DEFAULT}
+  //         >
+  //           Heading 4
+  //         </Text>
+  //         <Text
+  //           h5
+  //           style={{ marginBottom: theme.SIZES.BASE / 2 }}
+  //           color={argonTheme.COLORS.DEFAULT}
+  //         >
+  //           Heading 5
+  //         </Text>
+  //         <Text
+  //           p
+  //           style={{ marginBottom: theme.SIZES.BASE / 2 }}
+  //           color={argonTheme.COLORS.DEFAULT}
+  //         >
+  //           Paragraph
+  //         </Text>
+  //         <Text muted>This is a muted paragraph.</Text>
+  //       </Block>
+  //     </Block>
+  //   );
+  // };
 
   renderInputs = () => {
     return (
@@ -393,12 +359,6 @@ class Notifications extends React.Component {
       <Block flex center>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 30 }}>
           {this.renderButtons()}
-          {this.renderText()}
-          {this.renderInputs()}
-          {this.renderSocial()}
-          {this.renderSwitches()}
-          {this.renderNavigation()}
-          {this.renderTableCell()}
         </ScrollView>
       </Block>
     );
