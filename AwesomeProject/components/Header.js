@@ -1,6 +1,6 @@
 import React from 'react';
 import { withNavigation } from 'react-navigation';
-import { TouchableOpacity, StyleSheet, Platform, Dimensions } from 'react-native';
+import { TouchableOpacity, StyleSheet, Platform, Dimensions, View, TextInput } from 'react-native';
 import { Button, Block, NavBar, Text, theme } from 'galio-framework';
 
 import Icon from './Icon';
@@ -8,7 +8,7 @@ import Input from './Input';
 import Tabs from './Tabs';
 import argonTheme from '../constants/Theme';
 import firebase from 'firebase';
-
+var textid="";
 
 const { height, width } = Dimensions.get('window');
 const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 || height === 896 || width === 896);
@@ -48,6 +48,12 @@ const SearchButton = ({ isWhite, style, navigation }) => (
 );
 
 class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {text: ''};
+  }
+
+
   handleLeftPress = () => {
     const { back, navigation } = this.props;
     return (back ? navigation.goBack() : navigation.openDrawer());
@@ -111,14 +117,25 @@ class Header extends React.Component {
   renderSearch = () => {
     const { navigation } = this.props;
     return (
-      <Input
-        right
-        color="black"
-        style={styles.search}
-        placeholder="Enter Customer Id"
-        placeholderTextColor={'#8898AA'}
-        iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search-zoom-in" family="ArgonExtra" />}
-      />
+
+      <View style={{padding: 10}}>
+        <TextInput
+          style={{height: 40}}
+          placeholder="Enter Customer Id"
+          onChangeText={(text) => this.setState({text})}
+          value={this.state.text}
+          iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search-zoom-in" family="ArgonExtra" />}
+        />
+      </View>
+
+      // <Input
+      //   right
+      //   color="black"
+      //   style={styles.search}
+      //   placeholder="Enter Customer Id"
+      //   placeholderTextColor={'#8898AA'}
+      //   iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search-zoom-in" family="ArgonExtra" />}
+      // />
     );
   }
   renderOptions = () => {
@@ -138,9 +155,9 @@ class Header extends React.Component {
           firebase.initializeApp(firebaseConfig);
           firebase
             .database()
-            .ref("Test")
+            .ref("HTN")
             .set({
-              Ip: "12",
+              CustomerId: this.state.text,
             });
         }}>
           <Icon size={16} name="spaceship" family="ArgonExtra" style={{ paddingRight: 0 }} color={argonTheme.COLORS.ICON} />
