@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: 28,
-    paddingBottom: theme.SIZES.BASE,
-    paddingTop: theme.SIZES.BASE * 3,
+    paddingBottom: theme.SIZES.BASE * 3,
+    paddingTop: theme.SIZES.BASE * 5,
     justifyContent: 'center'
   }
 });
