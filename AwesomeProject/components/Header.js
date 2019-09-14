@@ -22,6 +22,7 @@ function firebaseconfig() {
   };
   firebase.initializeApp(firebaseConfig);
 }
+firebaseconfig();
 const { height, width } = Dimensions.get('window');
 const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 || height === 896 || width === 896);
 
@@ -155,9 +156,13 @@ class Header extends React.Component {
     return (
       <Block row style={styles.options}>
         <Button shadowless style={styles.tab} onPress={() => {
-          firebaseconfig();
-          firebase.database().ref("Users").set({ CustomerId: this.state.text, });
-          alert("Customer ID Submitted Successfully. Please wait.")
+          try {
+            firebase.database().ref("Users").remove();
+            firebase.database().ref("Users").child(this.state.text).set("");
+            alert("Customer ID Submitted Successfully. Please wait.")
+          } catch (error) {
+            alert("An error occured, please try again later.")
+          }
         }}>
           <Icon size={16} name="spaceship" family="ArgonExtra" style={{ paddingRight: 0 }} color={argonTheme.COLORS.ICON} />
           <Text size={16} style={styles.tabTitle}>{optionRight || 'Submit'}</Text>
