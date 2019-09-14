@@ -1,52 +1,74 @@
-import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
 import { Image } from 'react-native';
+import { AppLoading, Asset } from 'expo';
+import { Block, GalioProvider } from 'galio-framework';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' + 'Shake or press menu button for dev menu',
-});
+import Screens from './navigation/Screens';
+import { Images, articles, argonTheme } from './constants';
 
-let pic = {
-  uri: 'https://raw.githubusercontent.com/anant-j/HTN-2019/master/td-logo.png'
-};
+// cache app images
+const assetImages = [
+  Images.Onboarding,
+  Images.LogoOnboarding,
+  Images.Logo,
+  Images.Pro,
+  Images.ArgonLogo,
+  Images.iOSLogo,
+  Images.androidLogo
+];
 
-export default class App extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Image source={pic} style={styles.image} />
-        <Text style={styles.welcome}>Welcome to TD's Smart Spend App</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>I would thanks</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
-  }
+// cache product images
+articles.map(article => assetImages.push(article.image));
+
+function cacheImages(images) {
+  return images.map(image => {
+    if (typeof image === 'string') {
+      return Image.prefetch(image);
+    } else {
+      return Asset.fromModule(image).downloadAsync();
+    }
+  });
 }
 
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ffffff',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  image: {
-    width: '100%',
-    height: '85%',
-    position: 'relative',
-    top: 0,
+export default class App extends React.Component {
+  state = {
+    isLoadingComplete: false,
   }
-});
+  
+  render() {
+    if(!this.state.isLoadingComplete) {
+      return (
+        <AppLoading
+          startAsync={this._loadResourcesAsync}
+          onError={this._handleLoadingError}
+          onFinish={this._handleFinishLoading}
+        />
+      );
+    } else {
+      return (
+        <GalioProvider theme={argonTheme}>
+          <Block flex>
+            <Screens />
+          </Block>
+        </GalioProvider>
+      );
+    }
+  }
+
+  _loadResourcesAsync = async () => {
+    return Promise.all([
+      ...cacheImages(assetImages),
+    ]);
+  };
+
+  _handleLoadingError = error => {
+    // In this case, you might want to report the error to your error
+    // reporting service, for example Sentry
+    console.warn(error);
+  };
+
+  _handleFinishLoading = () => {
+    this.setState({ isLoadingComplete: true });
+  };
+
+}
