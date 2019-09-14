@@ -5,7 +5,7 @@ import { Block, GalioProvider } from 'galio-framework';
 
 import Screens from './navigation/Screens';
 import { Images, articles, argonTheme } from './constants';
-import firebase from 'firebase';
+
 
 // cache app images
 const assetImages = [
@@ -35,20 +35,6 @@ export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
   }
-
-  // componentWillMount() {
-  //   var firebaseConfig = {
-  //     apiKey: "AIzaSyDEDfZim91ohoLP6ypuk0iA5ni9r3l5E-A",
-  //     authDomain: "hackthenorth-2019.firebaseapp.com",
-  //     databaseURL: "https://hackthenorth-2019.firebaseio.com",
-  //     projectId: "hackthenorth-2019",
-  //     storageBucket: "",
-  //     messagingSenderId: "684933425908",
-  //     appId: "1:684933425908:web:488fce1e3e243aa39c8ca1"
-  //   };
-  //   firebase.initializeApp(config);
-  //   console.log(firebase);
-  // }
 
   render() {
     if (!this.state.isLoadingComplete) {
