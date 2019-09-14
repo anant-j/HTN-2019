@@ -61,6 +61,7 @@ const SearchButton = ({ isWhite, style, navigation }) => (
 );
 
 class Header extends React.Component {
+  // global state variable for this.state
   constructor(props) {
     super(props);
     this.state = { text: '' };
@@ -133,7 +134,7 @@ class Header extends React.Component {
 
       <View style={{ padding: 10 }}>
         <TextInput
-          style={{ height: 40, width: 140 }}
+          style={{ height: 40, width: 500, fontWeight: 'bold', textAlign: 'center'}}
           placeholder="Enter Customer Id"
           onChangeText={(text) => this.setState({ text })}
           value={this.state.text}
@@ -141,6 +142,7 @@ class Header extends React.Component {
         />
       </View>
 
+      // old text box
       // <Input
       //   right
       //   color="black"
