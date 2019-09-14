@@ -15,7 +15,7 @@ import Pro from "../screens/Pro";
 import Profile from "../screens/Profile";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
-import Articles from "../screens/Articles";
+// import Articles from "../screens/Articles";
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";
@@ -68,26 +68,26 @@ const ElementsStack = createStackNavigator({
       header: <Header title="Elements" navigation={navigation} />
     })
   }
-},{
-  cardStyle: {
-    backgroundColor: "#F8F9FE"
-  },
-  transitionConfig
-});
+}, {
+    cardStyle: {
+      backgroundColor: "#F8F9FE"
+    },
+    transitionConfig
+  });
 
-const ArticlesStack = createStackNavigator({
-  Articles: {
-    screen: Articles,
-    navigationOptions: ({ navigation }) => ({
-      header: <Header title="Articles" navigation={navigation} />
-    })
-  }
-},{
-  cardStyle: {
-    backgroundColor: "#F8F9FE"
-  },
-  transitionConfig
-});
+// const ArticlesStack = createStackNavigator({
+//   Articles: {
+//     screen: Articles,
+//     navigationOptions: ({ navigation }) => ({
+//       header: <Header title="Articles" navigation={navigation} />
+//     })
+//   }
+// }, {
+//     cardStyle: {
+//       backgroundColor: "#F8F9FE"
+//     },
+//     transitionConfig
+//   });
 
 const ProfileStack = createStackNavigator(
   {
@@ -138,7 +138,7 @@ const AppStack = createDrawerNavigator(
     Onboarding: {
       screen: Onboarding,
       navigationOptions: {
-        drawerLabel: () => {}
+        drawerLabel: () => { }
       }
     },
     Home: {
@@ -173,14 +173,14 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
-    Articles: {
-      screen: ArticlesStack,
-      navigationOptions: navOpt => ({
-        drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Articles" title="Articles" />
-        )
-      })
-    }
+    // Articles: {
+    //   screen: ArticlesStack,
+    //   navigationOptions: navOpt => ({
+    //     drawerLabel: ({ focused }) => (
+    //       <DrawerItem focused={focused} screen="Articles" title="Articles" />
+    //     )
+    //   })
+    // }
   },
   Menu
 );
