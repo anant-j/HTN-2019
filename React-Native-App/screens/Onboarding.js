@@ -26,13 +26,13 @@ export default class Pro extends React.Component {
               </Block>
               <Block >
                 <Block>
-                  <Text color="white" size={60}>Toronto</Text>
+                  <Text color="white" size={50}>Welcome to</Text>
                 </Block>
                 <Block>
-                  <Text color="white" size={60}>Dominion</Text>
+                  <Text color="white" size={50}>the Future</Text>
                 </Block>
                 <Block row>
-                  <Text color="white" size={60}>Bank</Text>
+                  <Text color="white" size={30}>Powered by TD's ML Labs</Text>
                 </Block>
               </Block>
               <Block row style={{ marginTop: theme.SIZES.BASE * 1.5, marginBottom: theme.SIZES.BASE * 4 }}>
