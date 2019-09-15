@@ -72,8 +72,10 @@ const styles = StyleSheet.create({
     // borderRadius: 3,
   },
   horizontalImage: {
-    height: 122,
-    width: 'auto',
+    height: 100,
+    width: 100,
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   horizontalStyles: {
     borderTopRightRadius: 0,
@@ -84,7 +86,9 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 0
   },
   fullImage: {
-    height: 215
+    height: 100,
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   shadow: {
     shadowColor: theme.COLORS.BLACK,

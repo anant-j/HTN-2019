@@ -1,7 +1,7 @@
 export default [
   {
     title: 'New Notifications Available',
-    image: 'https://www.sccpre.cat/png/big/35/352517_youtube-bell-icon-png.png?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80',
+    image: 'https://www.sccpre.cat/png/big/35/352517_youtube-bell-icon-png.png?ixlib=rb-1.2.1&auto=format&fit=crop&w=1100&q=80',
     horizontal: true,
     cta: 'View Notifications'
   },
