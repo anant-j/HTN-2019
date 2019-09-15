@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
+import { ScrollView, StyleSheet, Dimensions, TouchableOpacity, Image } from "react-native";
 // Galio components
 import { Block, Text, Button as GaButton, theme } from "galio-framework";
 import { argonTheme, tabs } from "../constants";
@@ -16,34 +16,41 @@ class Notifications extends React.Component {
   // toggleSwitch = switchId =>
   //   this.setState({ [switchId]: !this.state[switchId] });
 
+  constructor() {
+    super();
+    this.state = {
+      success: true,
+      warning: true,
+      error: false,
+    }
+  }
+
   renderButtons = () => {
     return (
       <Block flex>
         <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
           <Text></Text>
-          <Block center>
-            <Button color="success" style={styles.button}>
-              SUCCESS
-            </Button>
-          </Block>
-          <Block center>
-            <Button color="warning" style={styles.button}>
-              WARNING
-            </Button>
-          </Block>
+          {this.state.success ?
+            <Block center>
+              <Button color="success" style={styles.button}>
+                SUCCESS
+              </Button>
+            </Block> : null
+          }
+          {this.state.warning ?
+            <Block center>
+              <Button color="warning" style={styles.button}>
+                WARNING
+              </Button>
+            </Block> : null
+          }
+          {this.state.error ?
           <Block center>
             <Button color="error" style={styles.button}>
               ERROR
             </Button>
-          </Block>
-          <Block row space="evenly">
-            <Block flex left>
-              <Select
-                defaultIndex={1}
-                options={["01", "02", "03", "04", "05"]}
-              />
-            </Block>
-          </Block>
+          </Block> : null
+          }
         </Block>
       </Block>
     );
