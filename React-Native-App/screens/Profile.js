@@ -16,7 +16,29 @@ import { HeaderHeight } from "../constants/utils";
 const { width, height } = Dimensions.get("screen");
 
 const thumbMeasure = (width - 48 - 32) / 3;
+var res = "";
+var newres = "";
+function callapi(url) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == XMLHttpRequest.DONE) {
+      res = JSON.parse(xhr.responseText);
+      newres = (JSON.parse(res));
+    }
+  }
+  xhr.open('GET', url, true);
+  xhr.send(null);
+}
 
+callapi("https://hackthenorth-2019.appspot.com/alerts");
+
+
+
+// fetch('https://hackthenorth-2019.appspot.com/alerts', {
+//   method: 'GET'
+// }).then((response) => response.json()).then((responseJson) => {
+//   responseJson.Info.budget, responseJson.Info.name, responseJson.Info.age, responseJson.Info.municipality
+// })
 class Profile extends React.Component {
   render() {
     return (
@@ -55,7 +77,7 @@ class Profile extends React.Component {
                       small
                       style={{ backgroundColor: argonTheme.COLORS.DEFAULT }}
                     >
-                      BUDGET
+                      <Text color="#ffffff">{newres.Info.budget}</Text>
                     </Button>
                   </Block>
                   <Block row space="between">
@@ -97,10 +119,10 @@ class Profile extends React.Component {
                 <Block flex>
                   <Block middle style={styles.nameInfo}>
                     <Text bold size={28} color="#32325D">
-                      Peter Haines, 15
+                      {newres.Info.name}, {newres.Info.age}
                     </Text>
                     <Text size={16} color="#32325D" style={{ marginTop: 10 }}>
-                      Toronto, CA
+                      {newres.Info.municipality}
                     </Text>
                   </Block>
                   <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
