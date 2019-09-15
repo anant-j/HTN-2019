@@ -1,11 +1,30 @@
 import React from "react";
-import { ScrollView, StyleSheet, Dimensions, TouchableOpacity, Image } from "react-native";
+import { ScrollView, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 // Galio components
 import { Block, Text, Button as GaButton, theme } from "galio-framework";
 import { argonTheme, tabs } from "../constants";
 import { Button, Select, Icon, Input, Header, Switch } from "../components";
 
 const { width } = Dimensions.get("screen");
+
+var res = "";
+var newres = "";
+
+function callapi(url) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == XMLHttpRequest.DONE) {
+      res = JSON.parse(xhr.responseText);
+      console.log(res)
+      newres = (JSON.parse(res));
+    }
+  }
+  xhr.open('GET', url, true);
+  xhr.send(null);
+}
+
+callapi("https://hackthenorth-2019.appspot.com/alerts");
+
 
 class Notifications extends React.Component {
   // state = {
@@ -19,9 +38,10 @@ class Notifications extends React.Component {
   constructor() {
     super();
     this.state = {
-      success: true,
-      warning: true,
-      error: false,
+      overbudget: newres.Alerts.OverBudget > 0,
+      predictedOverBudget: newres.Alerts.PredictedOverBudget > 0,
+      potentialFraud: newres.Alerts.PotentialFraud > 0,
+      overspending: newres.Alerts.Overspending > 0,
     }
   }
 
@@ -30,31 +50,39 @@ class Notifications extends React.Component {
       <Block flex>
         <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
           <Text></Text>
-          {this.state.success ?
+          {this.state.overbudget ?
             <Block center>
               <Button color="success" style={styles.button}>
-                SUCCESS
+                OVERBUDGET
               </Button>
             </Block> : null
           }
-          {this.state.warning ?
+          {this.state.predictedOverBudget ?
             <Block center>
               <Button color="warning" style={styles.button}>
-                WARNING
+                PREDICTED OVERBUDGET
               </Button>
             </Block> : null
           }
-          {this.state.error ?
-          <Block center>
-            <Button color="error" style={styles.button}>
-              ERROR
+          {this.state.potentialFraud ?
+            <Block center>
+              <Button color="error" style={styles.button}>
+                POTENTIAL FRAUD
             </Button>
-          </Block> : null
+            </Block> : null
+          }
+          {this.state.overspending ?
+            <Block center>
+              <Button color="error" style={styles.button}>
+                OVERSPENDING
+            </Button>
+            </Block> : null
           }
         </Block>
       </Block>
     );
   };
+
 
   // renderText = () => {
   //   return (
