@@ -184,6 +184,7 @@ class Header extends React.Component {
           return fetch('https://hackthenorth-2019.appspot.com/users', data)
             .then(response => response.json())
             .then(json => alert("Successfully completed."))
+            .then(navigation.navigate("Profile"))
             .catch(error => alert(error))
           // alert(this.state.text1);
           // alert(this.state.text2);
