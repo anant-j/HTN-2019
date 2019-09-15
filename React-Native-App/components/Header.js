@@ -27,7 +27,7 @@ const { height, width } = Dimensions.get('window');
 const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 || height === 896 || width === 896);
 
 const BellButton = ({ isWhite, style, navigation }) => (
-  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Profile')}>
+  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Notifications')}>
     <Icon
       family="ArgonExtra"
       size={16}
@@ -43,7 +43,7 @@ const BasketButton = ({ isWhite, style, navigation }) => (
     <Icon
       family="ArgonExtra"
       size={16}
-      name="basket"
+      name="chart-pie-35"
       color={argonTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
   </TouchableOpacity>
@@ -134,7 +134,7 @@ class Header extends React.Component {
 
       <View style={{ padding: 10 }}>
         <TextInput
-          style={{ height: 40, width: 500, fontWeight: 'bold', textAlign: 'center'}}
+          style={{ height: 40, width: 500, fontWeight: 'bold', textAlign: 'center' }}
           placeholder="Enter Customer Id"
           onChangeText={(text) => this.setState({ text })}
           value={this.state.text}

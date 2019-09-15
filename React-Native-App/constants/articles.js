@@ -1,9 +1,9 @@
 export default [
   {
-    title: 'Ice cream is made with carrageenan …',
-    image: 'https://images.unsplash.com/photo-1516559828984-fb3b99548b21?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80',
-    cta: 'View article',
-    horizontal: true
+    title: 'New Notifications Available',
+    image: 'https://www.sccpre.cat/png/big/35/352517_youtube-bell-icon-png.png?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80',
+    horizontal: true,
+    cta: 'View Notifications'
   },
   {
     title: 'Is makeup one of your daily esse …',
