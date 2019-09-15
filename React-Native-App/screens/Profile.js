@@ -70,6 +70,7 @@ class Profile extends React.Component {
                     <Button
                       small
                       style={{ backgroundColor: argonTheme.COLORS.INFO }}
+                      onPress={() => { callapi("https://hackthenorth-2019.appspot.com/alerts") }}
                     >
                       PAY BILLS
                     </Button>
