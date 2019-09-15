@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
+import { ScrollView, StyleSheet, Dimensions, TouchableOpacity, Image } from "react-native";
 // Galio components
 import { Block, Text, Button as GaButton, theme } from "galio-framework";
 import { argonTheme, tabs } from "../constants";
@@ -51,14 +51,6 @@ class Notifications extends React.Component {
             </Button>
           </Block> : null
           }
-          <Block row space="evenly">
-            <Block flex left>
-              <Select
-                defaultIndex={1}
-                options={["01", "02", "03", "04", "05"]}
-              />
-            </Block>
-          </Block>
         </Block>
       </Block>
     );
