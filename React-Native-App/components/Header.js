@@ -162,7 +162,7 @@ class Header extends React.Component {
       <View style={{ padding: 10 }}>
         <TextInput
           style={{ height: 40, width: 500, fontWeight: 'bold', textAlign: 'center' }}
-          placeholder="Enter Day of Birth"
+          placeholder="Enter Budget"
           onChangeText={(text2) => this.setState({ text2 })}
           iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search-zoom-in" family="ArgonExtra" />}
         />
@@ -183,7 +183,7 @@ class Header extends React.Component {
         <Button shadowless style={styles.tab} onPress={() => {
           return fetch('https://hackthenorth-2019.appspot.com/users', data)
             .then(response => response.json())
-            .then(json => json)
+            .then(json => alert("Successfully completed."))
             .catch(error => alert(error))
           // alert(this.state.text1);
           // alert(this.state.text2);
