@@ -137,7 +137,6 @@ class Header extends React.Component {
           style={{ height: 40, width: 500, fontWeight: 'bold', textAlign: 'center' }}
           placeholder="Enter Customer Id"
           onChangeText={(text) => this.setState({ text })}
-          value={this.state.text}
           iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search-zoom-in" family="ArgonExtra" />}
         />
       </View>
@@ -151,6 +150,20 @@ class Header extends React.Component {
       //   placeholderTextColor={'#8898AA'}
       //   iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search-zoom-in" family="ArgonExtra" />}
       // />
+    );
+  }
+  renderSearch2 = () => {
+    const { navigation } = this.props;
+    return (
+
+      <View style={{ padding: 10 }}>
+        <TextInput
+          style={{ height: 40, width: 500, fontWeight: 'bold', textAlign: 'center' }}
+          placeholder="Enter Day of Birth"
+          onChangeText={(text) => this.setState({ text })}
+          iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search-zoom-in" family="ArgonExtra" />}
+        />
+      </View>
     );
   }
   renderOptions = () => {
@@ -191,6 +204,7 @@ class Header extends React.Component {
       return (
         <Block center>
           {search ? this.renderSearch() : null}
+          {search ? this.renderSearch2() : null}
           {options ? this.renderOptions() : null}
           {tabs ? this.renderTabs() : null}
         </Block>
