@@ -16,26 +16,41 @@ class Notifications extends React.Component {
   // toggleSwitch = switchId =>
   //   this.setState({ [switchId]: !this.state[switchId] });
 
+  constructor() {
+    super();
+    this.state = {
+      success: true,
+      warning: true,
+      error: false,
+    }
+  }
+
   renderButtons = () => {
     return (
       <Block flex>
         <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
           <Text></Text>
-          <Block center>
-            <Button color="success" style={styles.button}>
-              SUCCESS
-            </Button>
-          </Block>
-          <Block center>
-            <Button color="warning" style={styles.button}>
-              WARNING
-            </Button>
-          </Block>
+          {this.state.success ?
+            <Block center>
+              <Button color="success" style={styles.button}>
+                SUCCESS
+              </Button>
+            </Block> : null
+          }
+          {this.state.warning ?
+            <Block center>
+              <Button color="warning" style={styles.button}>
+                WARNING
+              </Button>
+            </Block> : null
+          }
+          {this.state.error ?
           <Block center>
             <Button color="error" style={styles.button}>
               ERROR
             </Button>
-          </Block>
+          </Block> : null
+          }
           <Block row space="evenly">
             <Block flex left>
               <Select
