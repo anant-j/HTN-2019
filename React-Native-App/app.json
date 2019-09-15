@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "TD-React Native",
-    "slug": "argon-free-react-native",
+    "slug": "td-react-native",
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": [
@@ -24,6 +24,7 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": ""
   }
 }
