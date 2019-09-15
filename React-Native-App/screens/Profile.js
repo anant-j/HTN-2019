@@ -16,7 +16,29 @@ import { HeaderHeight } from "../constants/utils";
 const { width, height } = Dimensions.get("screen");
 
 const thumbMeasure = (width - 48 - 32) / 3;
+var res = "";
+var newres = "";
+function callapi(url) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == XMLHttpRequest.DONE) {
+      res = JSON.parse(xhr.responseText);
+      newres = (JSON.parse(res));
+    }
+  }
+  xhr.open('GET', url, true);
+  xhr.send(null);
+}
 
+callapi("https://hackthenorth-2019.appspot.com/alerts");
+
+
+
+// fetch('https://hackthenorth-2019.appspot.com/alerts', {
+//   method: 'GET'
+// }).then((response) => response.json()).then((responseJson) => {
+//   responseJson.Info.budget, responseJson.Info.name, responseJson.Info.age, responseJson.Info.municipality
+// })
 class Profile extends React.Component {
   render() {
     return (
@@ -48,6 +70,7 @@ class Profile extends React.Component {
                     <Button
                       small
                       style={{ backgroundColor: argonTheme.COLORS.INFO }}
+                      onPress={() => { callapi("https://hackthenorth-2019.appspot.com/alerts") }}
                     >
                       PAY BILLS
                     </Button>
@@ -55,7 +78,7 @@ class Profile extends React.Component {
                       small
                       style={{ backgroundColor: argonTheme.COLORS.DEFAULT }}
                     >
-                      BUDGET
+                      <Text color="#ffffff">{newres.Info.budget}</Text>
                     </Button>
                   </Block>
                   <Block row space="between">
@@ -97,10 +120,10 @@ class Profile extends React.Component {
                 <Block flex>
                   <Block middle style={styles.nameInfo}>
                     <Text bold size={28} color="#32325D">
-                      Peter Haines, 15
+                      {newres.Info.name}, {newres.Info.age}
                     </Text>
                     <Text size={16} color="#32325D" style={{ marginTop: 10 }}>
-                      Toronto, CA
+                      {newres.Info.municipality}
                     </Text>
                   </Block>
                   <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
@@ -114,49 +137,10 @@ class Profile extends React.Component {
                     >
                       Payment Coming Up in 21 Days
                     </Text>
-                    <Button
-                      color="transparent"
-                      textStyle={{
-                        color: "#233DD2",
-                        fontWeight: "500",
-                        fontSize: 16
-                      }}
-                    >
-                      Show more
-                    </Button>
                   </Block>
-                  <Block
-                    row
-                    style={{ paddingVertical: 14, alignItems: "baseline" }}
-                  >
-                    <Text bold size={16} color="#525F7F">
-                      Album
-                    </Text>
-                  </Block>
-                  <Block
-                    row
-                    style={{ paddingBottom: 20, justifyContent: "flex-end" }}
-                  >
-                    <Button
-                      small
-                      color="transparent"
-                      textStyle={{ color: "#5E72E4", fontSize: 12 }}
-                    >
-                      View all
-                    </Button>
-                  </Block>
-                  <Block style={{ paddingBottom: -HeaderHeight * 2 }}>
-                    <Block row space="between" style={{ flexWrap: "wrap" }}>
-                      {Images.Viewed.map((img, imgIndex) => (
-                        <Image
-                          source={{ uri: img }}
-                          key={`viewed-${img}`}
-                          resizeMode="cover"
-                          style={styles.thumb}
-                        />
-                      ))}
-                    </Block>
-                  </Block>
+
+
+
                 </Block>
               </Block>
             </ScrollView>

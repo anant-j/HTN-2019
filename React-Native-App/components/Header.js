@@ -10,19 +10,21 @@ import argonTheme from '../constants/Theme';
 import firebase from 'firebase';
 var textid = "";
 
-function firebaseconfig() {
-  var firebaseConfig = {
-    apiKey: "AIzaSyDEDfZim91ohoLP6ypuk0iA5ni9r3l5E-A",
-    authDomain: "hackthenorth-2019.firebaseapp.com",
-    databaseURL: "https://hackthenorth-2019.firebaseio.com",
-    projectId: "hackthenorth-2019",
-    storageBucket: "",
-    messagingSenderId: "684933425908",
-    appId: "1:684933425908:web:488fce1e3e243aa39c8ca1"
-  };
-  firebase.initializeApp(firebaseConfig);
-}
-firebaseconfig();
+// let data = {
+//   method: 'POST',
+//   credentials: 'same-origin',
+//   mode: 'same-origin',
+//   body: JSON.stringify({
+//     user_id,
+//     budget
+//   }),
+//   headers: {
+//   }
+// }
+// return fetch('/appointments/get_appos', data)
+//         .then(response => response.json())  // promise
+//         .then(json => dispatch(receiveAppos(json)))
+
 const { height, width } = Dimensions.get('window');
 const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 || height === 896 || width === 896);
 
@@ -59,6 +61,7 @@ const SearchButton = ({ isWhite, style, navigation }) => (
     />
   </TouchableOpacity>
 );
+
 
 class Header extends React.Component {
   // global state variable for this.state
@@ -136,8 +139,7 @@ class Header extends React.Component {
         <TextInput
           style={{ height: 40, width: 500, fontWeight: 'bold', textAlign: 'center' }}
           placeholder="Enter Customer Id"
-          onChangeText={(text) => this.setState({ text })}
-          value={this.state.text}
+          onChangeText={(text1) => this.setState({ text1 })}
           iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search-zoom-in" family="ArgonExtra" />}
         />
       </View>
@@ -153,18 +155,42 @@ class Header extends React.Component {
       // />
     );
   }
+  renderSearch2 = () => {
+    const { navigation } = this.props;
+    return (
+
+      <View style={{ padding: 10 }}>
+        <TextInput
+          style={{ height: 40, width: 500, fontWeight: 'bold', textAlign: 'center' }}
+          placeholder="Enter Budget"
+          onChangeText={(text2) => this.setState({ text2 })}
+          iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search-zoom-in" family="ArgonExtra" />}
+        />
+      </View>
+    );
+  }
   renderOptions = () => {
     const { navigation, optionLeft, optionRight } = this.props;
+    let data = {
+      method: 'POST',
+      body: JSON.stringify({
+        user_id: this.state.text1,
+        budget: this.state.text2,
+      }),
+    }
     return (
       <Block row style={styles.options}>
         <Button shadowless style={styles.tab} onPress={() => {
-          try {
-            firebase.database().ref("Users").remove();
-            firebase.database().ref("Users").child(this.state.text).set("");
-            alert("Customer ID Submitted Successfully. Please wait.")
-          } catch (error) {
-            alert("An error occured, please try again later.")
-          }
+          return fetch('https://hackthenorth-2019.appspot.com/users', data)
+            .then(response => response.json())
+            .then(json => alert("Successfully completed."))
+            .then(navigation.navigate("Profile"))
+            .catch(error => alert(error))
+          // alert(this.state.text1);
+          // alert(this.state.text2);
+          // firebase.database().ref("Users").remove();
+          // firebase.database().ref("Users").child(this.state.text).set("");
+          // alert("Customer ID Submitted Successfully. Please wait.")
         }}>
           <Icon size={16} name="spaceship" family="ArgonExtra" style={{ paddingRight: 0 }} color={argonTheme.COLORS.ICON} />
           <Text size={16} style={styles.tabTitle}>{optionRight || 'Submit'}</Text>
@@ -191,6 +217,7 @@ class Header extends React.Component {
       return (
         <Block center>
           {search ? this.renderSearch() : null}
+          {search ? this.renderSearch2() : null}
           {options ? this.renderOptions() : null}
           {tabs ? this.renderTabs() : null}
         </Block>

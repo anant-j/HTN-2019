@@ -157,14 +157,14 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
-    Account: {
-      screen: Register,
-      navigationOptions: navOpt => ({
-        drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Register" title="Account" />
-        )
-      })
-    },
+    // Account: {
+    //   screen: Register,
+    //   navigationOptions: navOpt => ({
+    //     drawerLabel: ({ focused }) => (
+    //       <DrawerItem focused={focused} screen="Register" title="Account" />
+    //     )
+    //   })
+    // },
     Notifications: {
       screen: NotificationsStack,
       navigationOptions: navOpt => ({
