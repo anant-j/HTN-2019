@@ -10,11 +10,11 @@ class TDApi:
     def __init__(self):
         self.base_url = 'https://api.td-davinci.com/api/' 
         self.key = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDQlAiLCJ0ZWFtX2lkIjoiMWI5ZjZhZmEtMWQwOS0zMjE2LTllNjAtNzVjYWIxMDY3OTdiIiwiZXhwIjo5MjIzMzcyMDM2ODU0Nzc1LCJhcHBfaWQiOiJlNDJlMTUwNy04MWQwLTRhYjgtODQ4NC1lZGU0ZTA3ZmM5MTYifQ.h2o4wV95JYMfEiNQDj8EKOxN_l463_64gHC6P8JOPiQ'
+        self.headers = {'Authorization': self.key}
     
     def get_past_transactions(self, user_id):
         url = self.base_url + 'customers/{}/transactions'.format(user_id) 
-        headers = {'Authorization': self.key}
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=self.headers)
         response_dict = response.json()
         if response_dict['statusCode'] != 200:
             raise ValueError('Response status is {}, not 200'.format(response_dict['statusCode']))
@@ -30,7 +30,7 @@ class TDApi:
         
         return past_transaction_list
 
-    def split_monthy(self, transactions):
+    def split_monthly(self, transactions):
         months = {}
         for transaction in transactions:
             month = str(datetime.datetime.strptime(transaction['originationDateTime'].split('T')[0], '%Y-%m-%d').month)
@@ -88,3 +88,44 @@ class TDApi:
             spending += abs(transaction['currencyAmount'])
 
         return spending
+
+    def get_outliers(self, transactions):
+        x = []
+        y = []
+        for transaction in transactions:
+            x.append(transaction['originationDateTime'])
+            y.append(transaction['currencyAmount'])
+
+        stdev = np.std(y)
+        mean = np.mean(y)
+        floor = mean + 1.2 * stdev
+        spending_outliers = []
+        for i in range(len(x)):
+            if y[i] > floor:
+                spending_outliers.append([x[i], y[i]])
+
+        for outlier in spending_outliers:
+            date = datetime.datetime.strptime(outlier[0].split(':')[0], '%Y-%m-%dT%H')
+            date_decimal = (date.day * 24 + date.hour) / 720
+            outlier[0] = date_decimal
+
+        stdev = np.std([outlier[0] for outlier in spending_outliers])
+        mean = np.mean([outlier[0] for outlier in spending_outliers])
+        fraud = []
+        not_fraud = []
+        for outlier in spending_outliers:
+            if abs(outlier[0] - mean) > stdev*2:
+                fraud.append(outlier)
+            else:
+                not_fraud.append(outlier)
+
+        return (fraud, not_fraud)
+
+    def get_info(self, uid):
+        response = requests.get(self.base_url + 'customers/' + uid, headers=self.headers).json()
+        info = {
+            'municipality': response['result']['addresses']['principalResidence']['municipality'],
+            'age': response['result']['age'],
+            'income': response['result']['totalIncome']
+        }
+        return info
