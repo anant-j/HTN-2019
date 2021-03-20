@@ -9,7 +9,7 @@ Flask-RESTful==0.3.7
 httpie==1.0.3
 idna==2.8
 itsdangerous==1.1.0
-Jinja2==2.10.1
+Jinja2==2.11.3
 MarkupSafe==1.1.1
 numpy==1.17.2
 Pygments==2.4.2
